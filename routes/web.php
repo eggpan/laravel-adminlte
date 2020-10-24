@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +11,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+if (config('site.enable_front')) {
+    require_once __DIR__ . '/web/front.php';
+}
+
+if (config('site.enable_admin')) {
+    require_once __DIR__ . '/web/admin.php';
+}
