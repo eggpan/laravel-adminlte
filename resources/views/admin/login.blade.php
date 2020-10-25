@@ -15,13 +15,13 @@
 <body class="login-page" style="min-height: 512.391px;">
   <div class="login-box">
     <div class="login-logo">
-      <span><b>ログイン</b></span>
+      <span><b>{{ __('lang.login') }}</b></span>
     </div>
 
     <!-- /.login-logo -->
     <div class="card">
       <div class="card-body login-card-body">
-  
+
         <form action="{{ route('admin.login.post') }}" method="POST">
           @csrf
 
@@ -29,7 +29,7 @@
             <input name="email"
               type="email"
               class="form-control @error('email') is-invalid @enderror"
-              placeholder="メールアドレス"
+              placeholder="{{ __('lang.email') }}"
               value="{{ old('email') }}"
             />
             <div class="input-group-append">
@@ -46,7 +46,7 @@
             <input name="password"
               type="password"
               class="form-control @error('password') is-invalid @enderror"
-              placeholder="パスワード"
+              placeholder="{{ __('lang.password') }}"
             />
             <div class="input-group-append">
               <div class="input-group-text">
@@ -63,24 +63,23 @@
               <div class="icheck-primary">
                 <input name="remember" type="checkbox" id="remember" value="1">
                 <label for="remember">
-                  ログインしたままにする
+                  {{ __('lang.remember_me') }}
                 </label>
               </div>
             </div>
             <!-- /.col -->
             <div class="col-4">
-              <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+              <button type="submit" class="btn btn-primary btn-block">{{ __('lang.login') }}</button>
             </div>
             <!-- /.col -->
           </div>
         </form>
-  
+
+        <!--
         <p class="mt-3 mb-1">
-          <a href="forgot-password.html">I forgot my password</a>
+          <a href="#">I forgot my password</a>
         </p>
-        <p class="mb-0">
-          <a href="register.html" class="text-center">Register a new membership</a>
-        </p>
+        -->
       </div>
       <!-- /.login-card-body -->
     </div>
