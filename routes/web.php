@@ -22,7 +22,7 @@ if (config('site.enable_front')) {
 }
 
 if (config('site.enable_admin')) {
-    Route::group(['prefix' => 'admin'], function () {
+    Route::group(['prefix' => 'admin', 'middleware' => 'set.locale'], function () {
         Route::group(['middleware' => 'guest:admin'], function () {
             Route::get('login', [LoginController::class, 'showLoginForm'])->name('admin.login');
             Route::post('login', [LoginController::class, 'doLogin'])->name('admin.login.post');
