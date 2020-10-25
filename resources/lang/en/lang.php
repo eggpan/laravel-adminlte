@@ -2,6 +2,8 @@
 
 return [
     'admin_menu' => 'Admin Menu',
+    'back' => 'Back',
+    'cancel' => 'Cancel',
     'create' => 'Create',
     'created_at' => 'Created at',
     'dashboard' => 'Dashboard',
@@ -10,9 +12,11 @@ return [
     'email' => 'Email',
     'id' => 'ID',
     'list' => 'List',
+    'locale' => 'Locale',
     'login' => 'Log in',
     'logout' => 'Log out',
     'password' => 'Password',
+    'password_confirmation' => 'Password (confirmation)',
     'profile' => 'Profile',
     'remember_me' => 'Remember Me',
     'user' => 'User',

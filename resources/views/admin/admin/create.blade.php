@@ -68,7 +68,7 @@
 
   <div class="row">
     <div class="col-12">
-      <a href="{{ route('admin.admin') }}" class="btn btn-secondary">{{ __('lang.cancel') }}</a>
+      <a href="{{ route('admin.admin') }}" class="btn btn-secondary">{{ __('lang.back') }}</a>
       <button type="submit" class="btn btn-success float-right">{{ __('lang.create') }}</button>
     </div>
   </div>
