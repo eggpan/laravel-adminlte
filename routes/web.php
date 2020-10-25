@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,13 @@ if (config('site.enable_admin')) {
         Route::group(['middleware' => 'auth:admin'], function () {
             Route::get('/', [HomeController::class, 'showDashboard'])->name('admin.home');
             Route::get('logout', [LoginController::class, 'doLogout'])->name('admin.logout');
+
+            Route::get('admin', [AdminController::class, 'showList'])->name('admin.admin');
+            Route::get('admin/create', [AdminController::class, 'showCreateForm'])->name('admin.admin.create');
+            Route::post('admin/create', [AdminController::class, 'create'])->name('admin.admin.create.post');
+            Route::get('admin/edit/{id}', [AdminController::class, 'showEditForm'])->name('admin.admin.edit');
+            Route::post('admin/edit/{id}', [AdminController::class, 'edit'])->name('admin.admin.edit.post');
+            Route::get('admin/view/{id}', [AdminController::class, 'view'])->name('admin.admin.view');
         });
     });
 }
