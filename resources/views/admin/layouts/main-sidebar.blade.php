@@ -21,7 +21,7 @@
             <a href="{{ route('admin.home') }}" class="nav-link">
               <i class="nav-icon fas fa-home"></i>
               <p>
-                ダッシュボード
+                {{ __('lang.dashboard') }}
               </p>
             </a>
           </li>
@@ -37,7 +37,7 @@
           </li>
           -->
 
-          <li class="nav-header">管理メニュー</li>
+          <li class="nav-header">{{ __('lang.admin_menu') }}</li>
 @if (Str::startsWith(Route::currentRouteName(), 'admin.admin'))
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
@@ -47,7 +47,7 @@
 @endif
               <i class="nav-icon far fa-user"></i>
               <p>
-                ユーザー
+                {{ __('lang.user') }}
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -59,9 +59,7 @@
                 <a href="{{ route('admin.admin') }}" class="nav-link">
 @endif
                   <i class="fas fa-list nav-icon"></i>
-                  <p>
-                    一覧
-                  </p>
+                  <p>{{ __('lang.list') }}</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -71,7 +69,7 @@
                 <a href="{{ route('admin.admin.create') }}" class="nav-link">
 @endif
                   <i class="fas fa-plus nav-icon"></i>
-                  <p>新規作成</p>
+                  <p>{{ __('lang.create') }}</p>
                 </a>
               </li>
             </ul>
