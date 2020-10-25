@@ -14,7 +14,7 @@ class AdminLoginService
         if (! $authenticated) {
             return redirect()->route('admin.login')
                 ->withInput($request->validated())
-                ->withErrors(['email' => 'IDまたはパスワードが違います。']);
+                ->withErrors(['email' => __('auth.failed')]);
         }
         return redirect()->route('admin.home');
     }
