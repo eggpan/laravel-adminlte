@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>@yield('title')</title>
+  <title>@yield('title') | {{ config('app.name') }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="stylesheet" href="{{ url('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
@@ -18,7 +18,21 @@
   @include('admin.layouts.navbar')
   @include('admin.layouts.main-sidebar')
   <div class="content-wrapper">
-    @yield('content')
+    @hasSection ('title')
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>@yield('title')</h1>
+            </div>
+          </div>
+        </div>
+      </section>
+    @endif
+
+    <div class="content">
+      @yield('content')
+    </div>
   </div>
   <aside class="control-sidebar control-sidebar-dark"></aside>
 </div>

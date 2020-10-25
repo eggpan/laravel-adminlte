@@ -16,7 +16,8 @@ abstract class TestCase extends BaseTestCase
         parent::setUp();
         $this->admin = Admin::create([
             'email'    => $this->faker->unique()->safeEmail,
-            'name'     => $this->faker->name,
+            'username' => $this->faker->name,
+            'locale'   => 'ja',
             'password' => bcrypt('password'),
         ]);
     }

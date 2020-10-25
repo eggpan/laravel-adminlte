@@ -16,10 +16,11 @@ class AdminTableSeeder extends Seeder
     public function run()
     {
         Admin::create([
-            'name'           => 'Adminstrator',
+            'username'        => 'Adminstrator',
             'email'          => 'admin@example.com',
             'password'       => bcrypt('password'),
             'remember_token' => Str::random(10),
+            'locale'         => 'ja',
         ]);
     }
 }

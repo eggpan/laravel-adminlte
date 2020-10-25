@@ -38,10 +38,11 @@
           -->
 
           <li class="nav-header">管理メニュー</li>
-          <li class="nav-item has-treeview">
-@if (Str::startsWith(Route::currentRouteName(), 'admin.user'))
+@if (Str::startsWith(Route::currentRouteName(), 'admin.admin'))
+          <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
 @else
+          <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
 @endif
               <i class="nav-icon far fa-user"></i>
@@ -52,7 +53,11 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('admin.home') }}" class="nav-link">
+@if (Route::currentRouteName() === 'admin.admin')
+                <a href="{{ route('admin.admin') }}" class="nav-link active">
+@else
+                <a href="{{ route('admin.admin') }}" class="nav-link">
+@endif
                   <i class="fas fa-list nav-icon"></i>
                   <p>
                     一覧
@@ -60,7 +65,11 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('admin.home') }}" class="nav-link">
+@if (Route::currentRouteName() === 'admin.admin.create')
+                <a href="{{ route('admin.admin.create') }}" class="nav-link active">
+@else
+                <a href="{{ route('admin.admin.create') }}" class="nav-link">
+@endif
                   <i class="fas fa-plus nav-icon"></i>
                   <p>新規作成</p>
                 </a>
@@ -69,8 +78,6 @@
           </li>
 
         </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
+      </nav><!-- /.sidebar-menu -->
+    </div><!-- /.sidebar -->
   </aside>
