@@ -20,6 +20,7 @@ return [
     'profile' => 'Profile',
     'remember_me' => 'Remember Me',
     'user' => 'User',
+    'user_create' => 'Create New User',
     'user_list' => 'User List',
     'username' => 'Username',
     'view' => 'View',

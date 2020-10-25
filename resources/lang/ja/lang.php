@@ -20,6 +20,7 @@ return [
     'profile' => 'プロフィール',
     'remember_me' => 'ログインしたままにする',
     'user' => 'ユーザー',
+    'user_create' => 'ユーザー新規作成',
     'user_list' => 'ユーザー一覧',
     'username' => 'ユーザー名',
     'view' => '参照',

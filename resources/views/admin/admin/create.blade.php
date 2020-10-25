@@ -1,5 +1,9 @@
 @extends('admin.layouts.layout')
 
+@section('title')
+{{ __('lang.user_create') }}
+@endsection
+
 @section('content')
 <form action="{{ route('admin.admin.create') }}" method="POST">
   @csrf
