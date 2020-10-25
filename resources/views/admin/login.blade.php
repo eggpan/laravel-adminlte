@@ -15,36 +15,55 @@
 <body class="login-page" style="min-height: 512.391px;">
   <div class="login-box">
     <div class="login-logo">
-      <a href="../../index2.html"><b>Admin</b>LTE</a>
+      <span><b>ログイン</b></span>
     </div>
+
     <!-- /.login-logo -->
     <div class="card">
       <div class="card-body login-card-body">
-        <p class="login-box-msg">Sign in to start your session</p>
   
-        <form action="../../index3.html" method="post">
+        <form action="{{ route('admin.login.post') }}" method="POST">
+          @csrf
+
           <div class="input-group mb-3">
-            <input type="email" class="form-control" placeholder="Email">
+            <input name="email"
+              type="email"
+              class="form-control @error('email') is-invalid @enderror"
+              placeholder="メールアドレス"
+              value="{{ old('email') }}"
+            />
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-envelope"></span>
               </div>
             </div>
+            <div class="invalid-feedback">
+              @error('email') {{ $message }} @enderror
+            </div>
           </div>
+
           <div class="input-group mb-3">
-            <input type="password" class="form-control" placeholder="Password">
+            <input name="password"
+              type="password"
+              class="form-control @error('password') is-invalid @enderror"
+              placeholder="パスワード"
+            />
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>
               </div>
             </div>
+            <div class="invalid-feedback">
+              @error('password') {{ $message }} @enderror
+            </div>
           </div>
+
           <div class="row">
             <div class="col-8">
               <div class="icheck-primary">
-                <input type="checkbox" id="remember">
+                <input name="remember" type="checkbox" id="remember" value="1">
                 <label for="remember">
-                  Remember Me
+                  ログインしたままにする
                 </label>
               </div>
             </div>
@@ -56,18 +75,7 @@
           </div>
         </form>
   
-        <div class="social-auth-links text-center mb-3">
-          <p>- OR -</p>
-          <a href="#" class="btn btn-block btn-primary">
-            <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-          </a>
-          <a href="#" class="btn btn-block btn-danger">
-            <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-          </a>
-        </div>
-        <!-- /.social-auth-links -->
-  
-        <p class="mb-1">
+        <p class="mt-3 mb-1">
           <a href="forgot-password.html">I forgot my password</a>
         </p>
         <p class="mb-0">
