@@ -49,4 +49,12 @@ class AdminControllerTest extends TestCase
             ->assertStatus(302)
             ->assertRedirect(route('admin.admin'));
     }
+
+    public function testAdminユーザー参照()
+    {
+        $this->get(
+            route('admin.admin.view', ['id' => $this->admin->id])
+        )
+        ->assertViewIs('admin.admin.view');
+    }
 }

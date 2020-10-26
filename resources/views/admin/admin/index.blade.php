@@ -6,6 +6,15 @@
 
 @section('content')
 <div class="container-fluid">
+  @error('message')
+    <div class="row">
+      <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h5><i class="icon fas fa-ban"></i>{{ __('lang.error') }}</h5>
+        {{ $message }}
+      </div>
+    </div>
+  @enderror
   <div class="row">
     <div class="col m-2">
       <div class="float-sm-right">
@@ -36,7 +45,7 @@
               <td>{{ $admin->username }}</td>
               <td>{{ $admin->created_at }}</td>
               <td class="project-actions text-right">
-                <a class="btn btn-primary btn-sm" href="#">
+                <a class="btn btn-primary btn-sm" href="{{ route('admin.admin.view', ['id' => $admin->id]) }}">
                     <i class="fas fa-folder"></i>
                     {{ __('lang.view') }}
                 </a>

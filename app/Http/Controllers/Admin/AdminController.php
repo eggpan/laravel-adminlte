@@ -45,6 +45,11 @@ class AdminController extends Controller
     public function view($id)
     {
         $admin = Admin::find($id);
+        if (is_null($admin)) {
+            return redirect()
+                ->route('admin.admin')
+                ->withErrors(['message' => __('lang.user_not_exist', ['id' => $id])]);
+        }
         return view('admin.admin.view', ['admin' => $admin]);
     }
 }
