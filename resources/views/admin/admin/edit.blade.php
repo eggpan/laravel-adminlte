@@ -1,12 +1,13 @@
 @extends('admin.layouts.layout')
 
 @section('title')
-{{ __('lang.user_create') }}
+{{ __('lang.user_edit') }}
 @endsection
 
 @section('content')
-<form action="{{ route('admin.admin.create') }}" method="POST">
+<form action="{{ route('admin.admin.edit', ['id' => $admin->id]) }}" method="POST">
   @csrf
+  @method('put')
   <div class="row">
     <div class="col-12">
       <div class="card card-primary">
@@ -18,7 +19,7 @@
           <div class="form-group row">
             <label for="email" class="col-sm-2 col-form-label">{{ __('lang.email') }}</label>
             <div class="col-sm-10">
-              <input name="email" type="email" class="form-control @error('email') is-invalid @enderror" id="email" value="{{ old('email') }}"/>
+              <input name="email" type="email" class="form-control @error('email') is-invalid @enderror" id="email" value="{{ old('email', $admin->email) }}"/>
               <div class="invalid-feedback">
                 @error('email') {{ $message }} @enderror
               </div>
@@ -28,7 +29,7 @@
           <div class="form-group row">
             <label for="name" class="col-sm-2 col-form-label">{{ __('lang.username') }}</label>
             <div class="col-sm-10">
-              <input name="username" type="text" class="form-control @error('username') is-invalid @enderror" id="name" value="{{ old('username') }}"/>
+              <input name="username" type="text" class="form-control @error('username') is-invalid @enderror" id="name" value="{{ old('username', $admin->username) }}"/>
               <div class="invalid-feedback">
                 @error('username') {{ $message }} @enderror
               </div>
@@ -39,8 +40,8 @@
             <label for="locale" class="col-sm-2 col-form-label">{{ __('lang.locale') }}</label>
             <div class="col-sm-10">
               <select name="locale" class="form-control @error('locale') is-invalid @enderror" id="locale">
-                <option value="ja">日本語</option>
-                <option value="en">English</option>
+                <option value="ja" @if ($admin->locale === 'ja') selected @endif>日本語</option>
+                <option value="en" @if ($admin->locale === 'en') selected @endif>English</option>
               </select>
               <div class="invalid-feedback">
                 @error('locale') {{ $message }} @enderror
@@ -73,7 +74,7 @@
   <div class="row">
     <div class="col-12">
       <a href="{{ route('admin.admin') }}" class="btn btn-secondary">{{ __('lang.back') }}</a>
-      <button type="submit" class="btn btn-success float-right">{{ __('lang.create') }}</button>
+      <button type="submit" class="btn btn-info float-right">{{ __('lang.edit') }}</button>
     </div>
   </div>
 </form>
