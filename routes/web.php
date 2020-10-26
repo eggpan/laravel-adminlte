@@ -36,9 +36,11 @@ if (config('site.enable_admin')) {
             Route::get('admin', [AdminController::class, 'showList'])->name('admin.admin');
             Route::get('admin/create', [AdminController::class, 'showCreateForm'])->name('admin.admin.create');
             Route::post('admin/create', [AdminController::class, 'create'])->name('admin.admin.create.post');
-            Route::get('admin/edit/{id}', [AdminController::class, 'showEditForm'])->name('admin.admin.edit');
-            Route::post('admin/edit/{id}', [AdminController::class, 'edit'])->name('admin.admin.edit.post');
+            Route::get('admin/{id}', [AdminController::class, 'showEditForm'])->name('admin.admin.edit');
+            Route::put('admin/{id}', [AdminController::class, 'edit'])->name('admin.admin.edit.put');
             Route::get('admin/view/{id}', [AdminController::class, 'view'])->name('admin.admin.view');
+            Route::delete('admin/{id}', [AdminController::class, 'delete'])->name('admin.admin.delete');
+            Route::get('admin/restore/{id}', [AdminController::class, 'restore'])->name('admin.admin.restore');
         });
     });
 }
