@@ -11,4 +11,7 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 
+docker/data
+docker/logs/*
+!docker/logs/app
 _ide_helper*.php
