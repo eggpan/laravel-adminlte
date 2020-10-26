@@ -30,3 +30,5 @@ COPY config/apache2/default.conf /etc/apache2/sites-available
 RUN a2dissite 000-default \
  && a2ensite default
 RUN a2enmod ssl rewrite
+
+WORKDIR /var/www/project
