@@ -9,6 +9,7 @@ cp .env.local .env
 find storage/* -type d | xargs chmod o+w
 chmod o+w bootstrap/cache
 touch database/database.sqlite
+chmod o+w database{,/database.sqlite}
 docker-compose up -d
 docker exec -ti --user $UID web composer install
 docker exec -ti --user $UID web ./artisan migrate --seed
