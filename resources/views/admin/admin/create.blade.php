@@ -51,7 +51,7 @@
           <div class="form-group row">
             <label for="password" class="col-sm-2 col-form-label">{{ __('lang.password') }}</label>
             <div class="col-sm-10">
-              <input name="password" type="password" class="form-control @error('password') is-invalid @enderror" id="password"/>
+              <input name="password" type="password" class="form-control @error('password') is-invalid @enderror" id="password" autocomplete="new-password"/>
               <div class="invalid-feedback">
                 @error('password') {{ $message }} @enderror
               </div>
