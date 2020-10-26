@@ -1,0 +1,16 @@
+#!/bin/sh
+set -e
+
+if [ "${DOCKER_PHP_DEBUG}" = "true" ]; then
+  cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
+else 
+  rm /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+  cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
+fi
+
+# first arg is `-f` or `--some-option`
+if [ "${1#-}" != "$1" ]; then
+  set -- apache2-foreground "$@"
+fi
+
+exec "$@"

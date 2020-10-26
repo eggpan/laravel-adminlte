@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  web:
+    container_name: web
+    build:
+      context: ./docker/build
+      dockerfile: ./php${DOCKER_PHP_VERSION}/Dockerfile
+    env_file:
+      - .env
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - .:/var/www/project
+      - ${DOCKER_APACHE_LOG_PATH}:/var/log/apache2
