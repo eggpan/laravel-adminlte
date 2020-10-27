@@ -13,4 +13,6 @@ chmod o+w database{,/database.sqlite}
 docker-compose up -d
 docker exec -ti --user $UID web composer install
 docker exec -ti --user $UID web ./artisan migrate --seed
+docker exec -ti web chmod o+rwx /var/log/apache2
+docker exec -ti db chmod o+rwx /var/lib/mysql/{,performance_schema,mysql,laravel}
 ```
