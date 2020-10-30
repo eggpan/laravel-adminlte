@@ -63,6 +63,7 @@
       </table>
     </div><!-- /.card-body -->
   </div><!-- /.card -->
+  {{ $admins->links() }}
 </div><!-- /.container-fluid -->
 
 <div class="modal fade" id="delete-modal" aria-hidden="true">

@@ -7,6 +7,13 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminLoginService
 {
+    /**
+     * ログイン処理の実行
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function login(Request $request)
     {
         $authenticated = Auth::guard('admin')->attempt(
