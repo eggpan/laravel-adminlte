@@ -19,8 +19,9 @@ class AdminTableSeeder extends Seeder
             'username'       => 'Adminstrator',
             'email'          => 'admin@example.com',
             'password'       => bcrypt('password'),
-            'remember_token' => Str::random(10),
+            'role_id'        => 1,
             'locale'         => 'ja',
+            'remember_token' => Str::random(10),
         ]);
     }
 }
