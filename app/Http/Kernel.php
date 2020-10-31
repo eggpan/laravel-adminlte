@@ -64,5 +64,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         // ロケールの設定
         'set.locale' => \App\Http\Middleware\SetLocale::class,
+        'permission' => \App\Http\Middleware\Permission::class,
     ];
 }
