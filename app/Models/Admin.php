@@ -35,12 +35,18 @@ class Admin extends Authenticatable
 
     public function hasPermission($permission)
     {
+        $permissions = (array)$permission;
         if ($this->isSuperUser()) {
             $allPermissions = Permission::pluck('name')->toArray();
-            return in_array($permission, $allPermissions);
+            foreach ($permissions as $p) {
+                if (! in_array($p, $allPermissions)) {
+                    return false;
+                }
+            }
+            return true;
         }
+
         $adminPermissions = $this->permissions->pluck('name')->toArray();
-        $permissions = (array)$permission;
         foreach ($permissions as $p) {
             if (! in_array($p, $adminPermissions)) {
                 return false;
