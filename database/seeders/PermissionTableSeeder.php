@@ -3,10 +3,10 @@
 namespace Database\Seeders;
 
 use App\Import\CsvImporter;
-use App\Models\Role;
+use App\Models\Permission;
 use Illuminate\Database\Seeder;
 
-class RoleTableSeeder extends Seeder
+class PermissionTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,6 +16,6 @@ class RoleTableSeeder extends Seeder
     public function run()
     {
         $importer = new CsvImporter();
-        $importer->load('roles.csv', Role::class);
+        $importer->load('permissions.csv', Permission::class);
     }
 }
