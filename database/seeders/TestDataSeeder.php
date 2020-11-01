@@ -14,6 +14,6 @@ class TestDataSeeder extends Seeder
     public function run()
     {
         $this->call(TestUserTableSeeder::class);
-        $this->call(TestAdminTableSeeder::class);
+        $this->call(TestStaffTableSeeder::class);
     }
 }

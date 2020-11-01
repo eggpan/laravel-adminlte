@@ -21,7 +21,7 @@ class HomeControllerTest extends TestCase
 
     public function testAdminログイン時ホームへのアクセス()
     {
-        $response = $this->actingAs($this->admin, 'admin')->get(route('admin.home'));
+        $response = $this->actingAs($this->admin, 'staff')->get(route('admin.home'));
         $response
             ->assertStatus(200)
             ->assertViewIs('admin.home')

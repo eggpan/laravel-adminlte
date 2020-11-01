@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Admin;
+use App\Models\Staff;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AdminCreateRequest;
-use App\Http\Requests\AdminEditRequest;
-use App\Http\Services\AdminService;
+use App\Http\Requests\StaffCreateRequest;
+use App\Http\Requests\StaffEditRequest;
+use App\Http\Services\StaffService;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class StaffController extends Controller
 {
-    protected $adminService;
+    protected $staffService;
 
     public function __construct()
     {
-        $this->adminService = new AdminService();
+        $this->staffService = new StaffService();
     }
 
     /**
@@ -25,8 +25,8 @@ class AdminController extends Controller
      */
     public function showList()
     {
-        $admins = Admin::withTrashed()->paginate();
-        return view('admin.admin.index', ['admins' => $admins]);
+        $admins = Staff::withTrashed()->paginate();
+        return view('admin.staff.index', ['admins' => $admins]);
     }
 
     /**
@@ -36,21 +36,21 @@ class AdminController extends Controller
      */
     public function showCreateForm()
     {
-        return view('admin.admin.create');
+        return view('admin.staff.create');
     }
 
     /**
      * 管理者ユーザーの新規作成実行
      *
-     * @param AdminCreateRequest $request
+     * @param StaffCreateRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function create(AdminCreateRequest $request)
+    public function create(StaffCreateRequest $request)
     {
-        $this->adminService->create($request);
+        $this->staffService->create($request);
 
-        return redirect()->route('admin.admin');
+        return redirect()->route('admin.staff');
     }
 
     /**
@@ -62,33 +62,33 @@ class AdminController extends Controller
      */
     public function showEditForm(string $id)
     {
-        $admin = Admin::withTrashed()->find($id);
+        $admin = Staff::withTrashed()->find($id);
         if (is_null($admin)) {
-            return $this->adminService->redirectNotExist($id);
+            return $this->staffService->redirectNotExist($id);
         }
 
-        return view('admin.admin.edit', ['admin' => $admin]);
+        return view('admin.staff.edit', ['admin' => $admin]);
     }
 
     /**
      * 管理者ユーザーのデータ編集実行
      *
      * @param string $id
-     * @param AdminEditRequest $request
+     * @param StaffEditRequest $request
      *
      * @return \Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
      */
-    public function edit(string $id, AdminEditRequest $request)
+    public function edit(string $id, StaffEditRequest $request)
     {
-        $admin = Admin::withTrashed()->find($id);
+        $admin = Staff::withTrashed()->find($id);
         if (is_null($admin)) {
-            return $this->adminService->redirectNotExist($id);
+            return $this->staffService->redirectNotExist($id);
         }
 
-        $this->adminService->update($admin, $request);
+        $this->staffService->update($admin, $request);
 
         return redirect()
-            ->route('admin.admin')
+            ->route('admin.staff')
             ->with(['message.success' => __('message.updated_data')]);
     }
 
@@ -101,12 +101,12 @@ class AdminController extends Controller
      */
     public function view(string $id)
     {
-        $admin = Admin::withTrashed()->find($id);
+        $admin = Staff::withTrashed()->find($id);
         if (is_null($admin)) {
-            return $this->adminService->redirectNotExist($id);
+            return $this->staffService->redirectNotExist($id);
         }
 
-        return view('admin.admin.view', ['admin' => $admin]);
+        return view('admin.staff.view', ['admin' => $admin]);
     }
 
     /**
@@ -118,14 +118,14 @@ class AdminController extends Controller
      */
     public function delete(string $id)
     {
-        $admin = Admin::find($id);
+        $admin = Staff::find($id);
         if (is_null($admin)) {
-            return $this->adminService->redirectNotExist($id);
+            return $this->staffService->redirectNotExist($id);
         }
         $admin->delete();
 
         return redirect()
-            ->route('admin.admin')
+            ->route('admin.staff')
             ->with(['message.success' => __('message.deleted_data')]);
     }
 
@@ -138,14 +138,14 @@ class AdminController extends Controller
      */
     public function restore(string $id)
     {
-        $admin = Admin::withTrashed()->find($id);
+        $admin = Staff::withTrashed()->find($id);
         if (is_null($admin)) {
-            return $this->adminService->redirectNotExist($id);
+            return $this->staffService->redirectNotExist($id);
         }
         $admin->restore();
 
         return redirect()
-            ->route('admin.admin')
+            ->route('admin.staff')
             ->with(['message.success' => __('message.restore_data')]);
     }
 }

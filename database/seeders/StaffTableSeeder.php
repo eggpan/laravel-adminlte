@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Admin;
+use App\Models\Staff;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
-class AdminTableSeeder extends Seeder
+class StaffTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,7 +15,7 @@ class AdminTableSeeder extends Seeder
      */
     public function run()
     {
-        Admin::updateOrCreate(
+        Staff::updateOrCreate(
             [
                 'id' => 1
             ],

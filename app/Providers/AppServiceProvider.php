@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
         //
         Paginator::useBootstrap();
         Blade::if('can', function ($permission) {
-            return Auth::guard('admin')->user()->hasPermission($permission);
+            return Auth::guard('staff')->user()->hasPermission($permission);
         });
     }
 }

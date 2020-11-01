@@ -16,6 +16,6 @@ class Role extends Model
 
     public function admins()
     {
-        return $this->hasMany(Admin::class);
+        return $this->hasMany(Staff::class);
     }
 }

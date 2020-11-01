@@ -40,7 +40,7 @@
     </div>
   </div>
   <div>
-    <a href="{{ route('admin.admin') }}" class="btn btn-secondary">{{ __('lang.back') }}</a>
+    <a href="{{ route('admin.staff') }}" class="btn btn-secondary">{{ __('lang.back') }}</a>
   </div>
 </div>
 @endsection

@@ -4,17 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 
-use App\Http\Requests\AdminLoginRequest;
-use App\Http\Services\AdminLoginService;
+use App\Http\Requests\StaffLoginRequest;
+use App\Http\Services\StaffLoginService;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    protected $adminLoginService;
+    protected $staffLoginService;
 
     public function __construct()
     {
-        $this->adminLoginService = new AdminLoginService();
+        $this->staffLoginService = new StaffLoginService();
     }
 
     /**
@@ -30,13 +30,13 @@ class LoginController extends Controller
     /**
      * ログインボタン押下時の処理
      *
-     * @param \App\Http\Requests\AdminLoginRequest $request
+     * @param \App\Http\Requests\StaffLoginRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function doLogin(AdminLoginRequest $request)
+    public function doLogin(StaffLoginRequest $request)
     {
-        return $this->adminLoginService->login($request);
+        return $this->staffLoginService->login($request);
     }
 
     /**
@@ -46,7 +46,7 @@ class LoginController extends Controller
      */
     public function doLogout()
     {
-        Auth::guard('admin')->logout();
+        Auth::guard('staff')->logout();
         return redirect()->route('admin.login');
     }
 }

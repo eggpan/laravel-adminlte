@@ -41,9 +41,9 @@ return [
             'provider' => 'users',
         ],
 
-        'admin' => [
+        'staff' => [
             'driver' => 'session',
-            'provider' => 'admins',
+            'provider' => 'staff',
         ],
 
         'api' => [
@@ -76,9 +76,9 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        'admins' => [
+        'staff' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Admin::class,
+            'model' => App\Models\Staff::class,
         ],
         // 'users' => [
         //     'driver' => 'database',

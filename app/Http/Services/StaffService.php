@@ -2,34 +2,34 @@
 
 namespace App\Http\Services;
 
-use App\Models\Admin;
+use App\Models\Staff;
 use Illuminate\Http\Request;
 
-class AdminService
+class StaffService
 {
     /**
      * 管理者ユーザーの新規作成
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return \App\Models\Admin
+     * @return \App\Models\Staff
      */
     public function create(Request $request)
     {
         $validated = $request->validated();
         $validated['password'] = bcrypt($validated['password']);
-        return Admin::create($validated);
+        return Staff::create($validated);
     }
 
     /**
      * 管理者ユーザーのデータ更新
      *
-     * @param \App\Models\Admin $admin
+     * @param \App\Models\Staff $admin
      * @param \Illuminate\Http\Request $request
      *
      * @return void
      */
-    public function update(Admin $admin, Request $request)
+    public function update(Staff $admin, Request $request)
     {
         $validated = $request->validated();
         if (is_null($validated['password'])) {
@@ -50,7 +50,7 @@ class AdminService
     public function redirectNotExist(string $id)
     {
         return redirect()
-            ->route('admin.admin')
+            ->route('admin.staff')
             ->withErrors(['message' => __('message.user_not_exist', ['id' => $id])]);
     }
 }

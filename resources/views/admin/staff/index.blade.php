@@ -10,8 +10,8 @@
   <div class="row">
     <div class="col m-2">
       <div class="float-sm-right">
-@can('admin.create')
-        <a class="btn btn-success btn-sm" href="{{ route('admin.admin.create') }}">
+@can('staff.create')
+        <a class="btn btn-success btn-sm" href="{{ route('admin.staff.create') }}">
           <i class="fas fa-folder"></i>
           {{ __('lang.create') }}
         </a>
@@ -39,24 +39,24 @@
               <td>{{ $admin->username }}</td>
               <td>{{ $admin->created_at }}</td>
               <td class="project-actions text-right">
-                <a class="btn btn-primary btn-sm" href="{{ route('admin.admin.view', ['id' => $admin->id]) }}">
+                <a class="btn btn-primary btn-sm" href="{{ route('admin.staff.view', ['id' => $admin->id]) }}">
                     <i class="fas fa-folder"></i>
                     {{ __('lang.view') }}
                 </a>
-@can('admin.update')
-                <a class="btn btn-info btn-sm" href="{{ route('admin.admin.edit', ['id' => $admin->id]) }}">
+@can('staff.update')
+                <a class="btn btn-info btn-sm" href="{{ route('admin.staff.edit', ['id' => $admin->id]) }}">
                     <i class="fas fa-pencil-alt"></i>
                     {{ __('lang.edit') }}
                 </a>
 @endcan
-@can('admin.delete')
+@can('staff.delete')
    @isset ($admin->deleted_at)
-                <a class="btn btn-default btn-sm" href="{{ route('admin.admin.restore', ['id' => $admin->id]) }}">
+                <a class="btn btn-default btn-sm" href="{{ route('admin.staff.restore', ['id' => $admin->id]) }}">
                   <i class="fas fa-pencil-alt"></i>
                   {{ __('lang.restore') }}
                 </a>
   @else
-                <button type="button" class="btn btn-danger btn-sm js-delete-button" data-toggle="modal" data-target="#delete-modal" data-delete-url="{{ route('admin.admin.delete', ['id' => $admin->id]) }}">
+                <button type="button" class="btn btn-danger btn-sm js-delete-button" data-toggle="modal" data-target="#delete-modal" data-delete-url="{{ route('admin.staff.delete', ['id' => $admin->id]) }}">
                   <i class="fas fa-trash"></i>
                   {{ __('lang.delete') }}
                 </button>

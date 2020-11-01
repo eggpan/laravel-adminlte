@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<form action="{{ route('admin.admin.edit', ['id' => $admin->id]) }}" method="POST">
+<form action="{{ route('admin.staff.edit', ['id' => $admin->id]) }}" method="POST">
   @csrf
   @method('put')
   <div class="row">
@@ -73,7 +73,7 @@
 
   <div class="row">
     <div class="col-12">
-      <a href="{{ route('admin.admin') }}" class="btn btn-secondary">{{ __('lang.back') }}</a>
+      <a href="{{ route('admin.staff') }}" class="btn btn-secondary">{{ __('lang.back') }}</a>
       <button type="submit" class="btn btn-info float-right">{{ __('lang.edit') }}</button>
     </div>
   </div>

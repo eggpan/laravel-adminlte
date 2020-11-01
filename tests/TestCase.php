@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use App\Models\Admin;
+use App\Models\Staff;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -14,21 +14,21 @@ abstract class TestCase extends BaseTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->admin = Admin::create([
+        $this->admin = Staff::create([
             'email'    => $this->faker->unique()->safeEmail,
             'username' => $this->faker->name,
             'role_id'  => 1,
             'locale'   => 'ja',
             'password' => bcrypt('password'),
         ]);
-        $this->developer = Admin::create([
+        $this->developer = Staff::create([
             'email'    => $this->faker->unique()->safeEmail,
             'username' => $this->faker->name,
             'role_id'  => 2,
             'locale'   => 'ja',
             'password' => bcrypt('password'),
         ]);
-        $this->user = Admin::create([
+        $this->user = Staff::create([
             'email'    => $this->faker->unique()->safeEmail,
             'username' => $this->faker->name,
             'role_id'  => 3,

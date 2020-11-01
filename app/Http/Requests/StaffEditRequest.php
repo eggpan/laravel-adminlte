@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class AdminLoginRequest extends FormRequest
+class StaffEditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +25,10 @@ class AdminLoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => ['required', 'email'],
-            'password' => ['required', 'string'],
-            'remember' => ['nullable', 'boolean'],
+            'email'    => ['required', 'email', 'max:255', Rule::unique('staff')->ignore($this->id)],
+            'username' => ['required', 'string', 'max:20'],
+            'password' => ['nullable', 'string', 'min:4', 'max:20', 'confirmed'],
+            'locale'   => ['required', 'in:ja,en'],
         ];
     }
 }

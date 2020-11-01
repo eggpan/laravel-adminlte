@@ -2,7 +2,7 @@ id,name
 1,superuser
 2,site.read
 3,site.adminmenu.read
-4,admin.create
-5,admin.read
-6,admin.update
-7,admin.delete
+4,staff.create
+5,staff.read
+6,staff.update
+7,staff.delete
