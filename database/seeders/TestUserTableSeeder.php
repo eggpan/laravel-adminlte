@@ -14,6 +14,8 @@ class TestUserTableSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->count(100)->create();
+        if (User::count() < 100) {
+            User::factory()->count(100)->create();
+        }
     }
 }

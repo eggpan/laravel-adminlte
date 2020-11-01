@@ -14,6 +14,34 @@ class TestAdminTableSeeder extends Seeder
      */
     public function run()
     {
-        Admin::factory()->count(100)->create();
+        Admin::updateOrCreate(
+            [
+                'id' => 2
+            ],
+            [
+                'username'       => 'Developer',
+                'email'          => 'developer@example.com',
+                'password'       => bcrypt('password'),
+                'role_id'        => 2,
+                'locale'         => 'ja',
+                'remember_token' => null,
+            ]
+        );
+        Admin::updateOrCreate(
+            [
+                'id' => 3
+            ],
+            [
+                'username'       => 'User',
+                'email'          => 'user@example.com',
+                'password'       => bcrypt('password'),
+                'role_id'        => 3,
+                'locale'         => 'ja',
+                'remember_token' => null,
+            ]
+        );
+        if (Admin::count() < 100) {
+            Admin::factory()->count(100)->create();
+        }
     }
 }
