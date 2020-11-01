@@ -15,13 +15,18 @@ class AdminTableSeeder extends Seeder
      */
     public function run()
     {
-        Admin::create([
-            'username'       => 'Adminstrator',
-            'email'          => 'admin@example.com',
-            'password'       => bcrypt('password'),
-            'role_id'        => 1,
-            'locale'         => 'ja',
-            'remember_token' => Str::random(10),
-        ]);
+        Admin::updateOrCreate(
+            [
+                'id' => 1
+            ],
+            [
+                'username'       => 'Adminstrator',
+                'email'          => 'admin@example.com',
+                'password'       => bcrypt('password'),
+                'role_id'        => 1,
+                'locale'         => 'ja',
+                'remember_token' => Str::random(10),
+            ]
+        );
     }
 }
