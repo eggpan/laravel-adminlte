@@ -1,14 +1,14 @@
 @extends('admin.layouts.layout')
 
 @section('title')
-{{ __('lang.user') . ' #' . $admin->id }}
+{{ __('lang.staff') . ' #' . $admin->id }}
 @endsection
 
 @section('content')
 <div class="container">
   <div class="card card-primary">
     <div class="card-header">
-      <h3 class="card-title">{{ __('lang.user_info') }}</h3>
+      <h3 class="card-title">{{ __('lang.staff_info') }}</h3>
     </div>
     <div class="card-body">
       <table class="table table-bordered">

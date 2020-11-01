@@ -48,7 +48,7 @@
     @endif
               <i class="nav-icon far fa-user"></i>
               <p>
-                {{ __('lang.user') }}
+                {{ __('lang.staff') }}
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>

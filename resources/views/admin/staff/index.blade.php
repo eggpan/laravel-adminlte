@@ -1,7 +1,7 @@
 @extends('admin.layouts.layout')
 
 @section('title')
-{{ __('lang.user_list') }}
+{{ __('lang.staff_list') }}
 @endsection
 
 @section('content')
