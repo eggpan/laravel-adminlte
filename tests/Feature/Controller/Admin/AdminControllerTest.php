@@ -13,7 +13,7 @@ class AdminControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->actingAs($this->admin, 'admin');
+        $this->actingAs($this->developer, 'admin');
     }
 
     public function testAdminユーザー一覧の表示()
@@ -22,6 +22,15 @@ class AdminControllerTest extends TestCase
 
         $response
             ->assertViewIs('admin.admin.index');
+    }
+
+    public function testUser権限でのAdminユーザー一覧の表示()
+    {
+        $this->actingAs($this->user, 'admin');
+        $response = $this->get(route('admin.admin'));
+
+        $response
+            ->assertStatus(302);
     }
 
     public function testAdminユーザー新規作成の表示()
