@@ -36,8 +36,9 @@
             </a>
           </li>
           -->
-
+@can('site.adminmenu.read')
           <li class="nav-header">{{ __('lang.admin_menu') }}</li>
+@endcan
 @can('admin.read')
   @if (Str::startsWith(Route::currentRouteName(), 'admin.admin'))
           <li class="nav-item has-treeview menu-open">
