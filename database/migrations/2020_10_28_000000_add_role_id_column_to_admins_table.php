@@ -14,7 +14,7 @@ class AddRoleIdColumnToAdminsTable extends Migration
     public function up()
     {
         Schema::table('admins', function (Blueprint $table) {
-            $table->integer('role_id')->after('password');
+            $table->integer('role_id')->nullable()->after('password');
         });
     }
 
