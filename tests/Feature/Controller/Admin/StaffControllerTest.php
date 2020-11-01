@@ -2,32 +2,32 @@
 
 namespace Tests\Feature\Controller\Admin;
 
-use App\Models\Admin;
+use App\Models\Staff;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class AdminControllerTest extends TestCase
+class StaffControllerTest extends TestCase
 {
     use WithFaker;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->actingAs($this->developer, 'admin');
+        $this->actingAs($this->developer, 'staff');
     }
 
     public function testAdminユーザー一覧の表示()
     {
-        $response = $this->get(route('admin.admin'));
+        $response = $this->get(route('admin.staff'));
 
         $response
-            ->assertViewIs('admin.admin.index');
+            ->assertViewIs('admin.staff.index');
     }
 
     public function testUser権限でのAdminユーザー一覧の表示()
     {
-        $this->actingAs($this->user, 'admin');
-        $response = $this->get(route('admin.admin'));
+        $this->actingAs($this->user, 'staff');
+        $response = $this->get(route('admin.staff'));
 
         $response
             ->assertStatus(302);
@@ -35,16 +35,16 @@ class AdminControllerTest extends TestCase
 
     public function testAdminユーザー新規作成の表示()
     {
-        $response = $this->get(route('admin.admin.create'));
+        $response = $this->get(route('admin.staff.create'));
 
         $response
-            ->assertViewIs('admin.admin.create');
+            ->assertViewIs('admin.staff.create');
     }
 
     public function testAdminユーザー新規作成のPOST成功()
     {
         $response = $this->post(
-            route('admin.admin.create'),
+            route('admin.staff.create'),
             [
                 'email' => $this->faker->safeEmail,
                 'username' =>  $this->faker->name,
@@ -56,29 +56,29 @@ class AdminControllerTest extends TestCase
 
         $response
             ->assertStatus(302)
-            ->assertRedirect(route('admin.admin'));
+            ->assertRedirect(route('admin.staff'));
     }
 
     public function testAdminユーザー参照()
     {
         $this->get(
-            route('admin.admin.view', ['id' => $this->admin->id])
+            route('admin.staff.view', ['id' => $this->admin->id])
         )
-        ->assertViewIs('admin.admin.view');
+        ->assertViewIs('admin.staff.view');
     }
 
     public function testAdminユーザー編集()
     {
         $this->get(
-            route('admin.admin.edit', ['id' => $this->admin->id])
+            route('admin.staff.edit', ['id' => $this->admin->id])
         )
-        ->assertViewIs('admin.admin.edit');
+        ->assertViewIs('admin.staff.edit');
     }
 
     public function testAdminユーザー編集のPOST成功()
     {
         $response = $this->put(
-            route('admin.admin.edit', ['id' => $this->admin->id]),
+            route('admin.staff.edit', ['id' => $this->admin->id]),
             [
                 'email' => $this->faker->safeEmail,
                 'username' =>  $this->faker->name,
@@ -90,19 +90,19 @@ class AdminControllerTest extends TestCase
 
         $response
             ->assertStatus(302)
-            ->assertRedirect(route('admin.admin'));
+            ->assertRedirect(route('admin.staff'));
     }
 
     public function testAdminユーザー削除()
     {
         $response = $this->delete(
-            route('admin.admin.delete', ['id' => $this->admin->id])
+            route('admin.staff.delete', ['id' => $this->admin->id])
         );
 
         $response
             ->assertStatus(302)
-            ->assertRedirect(route('admin.admin'));
-        $deltedAdmin = Admin::withTrashed()->find($this->admin->id);
+            ->assertRedirect(route('admin.staff'));
+        $deltedAdmin = Staff::withTrashed()->find($this->admin->id);
         $this->assertNotNull($deltedAdmin->deleted_at);
     }
 
@@ -110,13 +110,13 @@ class AdminControllerTest extends TestCase
     {
         $this->admin->delete();
         $response = $this->get(
-            route('admin.admin.restore', ['id' => $this->admin->id])
+            route('admin.staff.restore', ['id' => $this->admin->id])
         );
 
         $response
             ->assertStatus(302)
-            ->assertRedirect(route('admin.admin'));
-        $deltedAdmin = Admin::withTrashed()->find($this->admin->id);
+            ->assertRedirect(route('admin.staff'));
+        $deltedAdmin = Staff::withTrashed()->find($this->admin->id);
         $this->assertNull($deltedAdmin->deleted_at);
     }
 }

@@ -5,7 +5,7 @@ namespace App\Http\Services;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AdminLoginService
+class StaffLoginService
 {
     /**
      * ログイン処理の実行
@@ -16,7 +16,7 @@ class AdminLoginService
      */
     public function login(Request $request)
     {
-        $authenticated = Auth::guard('admin')->attempt(
+        $authenticated = Auth::guard('staff')->attempt(
             $request->only(['email', 'password']), $request->has('remember')
         );
         if (! $authenticated) {

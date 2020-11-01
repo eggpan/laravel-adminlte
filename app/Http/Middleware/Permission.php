@@ -17,7 +17,7 @@ class Permission
      */
     public function handle(Request $request, Closure $next, ...$pemissions)
     {
-        if (! Auth::guard('admin')->user()->hasPermission($pemissions)) {
+        if (! Auth::guard('staff')->user()->hasPermission($pemissions)) {
             return redirect()->back()->withErrors(['message' => implode(', ', $pemissions) . ' の権限がありません。']);
         }
         return $next($request);

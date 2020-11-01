@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Admin;
+use App\Models\Staff;
 use Illuminate\Database\Seeder;
 
-class TestAdminTableSeeder extends Seeder
+class TestStaffTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,7 @@ class TestAdminTableSeeder extends Seeder
      */
     public function run()
     {
-        Admin::updateOrCreate(
+        Staff::updateOrCreate(
             [
                 'id' => 2
             ],
@@ -27,7 +27,7 @@ class TestAdminTableSeeder extends Seeder
                 'remember_token' => null,
             ]
         );
-        Admin::updateOrCreate(
+        Staff::updateOrCreate(
             [
                 'id' => 3
             ],
@@ -40,8 +40,8 @@ class TestAdminTableSeeder extends Seeder
                 'remember_token' => null,
             ]
         );
-        if (Admin::count() < 100) {
-            Admin::factory()->count(100)->create();
+        if (Staff::count() < 100) {
+            Staff::factory()->count(100)->create();
         }
     }
 }

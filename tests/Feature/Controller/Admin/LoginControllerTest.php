@@ -29,7 +29,7 @@ class LoginControllerTest extends TestCase
     public function testAdminログイン時ログインページへのアクセス()
     {
         $response = $this
-            ->actingAs($this->admin, 'admin')
+            ->actingAs($this->admin, 'staff')
             ->get(route('admin.login'));
 
         $response

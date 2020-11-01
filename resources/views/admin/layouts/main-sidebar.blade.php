@@ -39,8 +39,8 @@
 @can('site.adminmenu.read')
           <li class="nav-header">{{ __('lang.admin_menu') }}</li>
 @endcan
-@can('admin.read')
-  @if (Str::startsWith(Route::currentRouteName(), 'admin.admin'))
+@can('staff.read')
+  @if (Str::startsWith(Route::currentRouteName(), 'admin.staff'))
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
   @else
@@ -55,21 +55,21 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-  @if (Route::currentRouteName() === 'admin.admin')
-                <a href="{{ route('admin.admin') }}" class="nav-link active">
+  @if (Route::currentRouteName() === 'admin.staff')
+                <a href="{{ route('admin.staff') }}" class="nav-link active">
   @else
-                <a href="{{ route('admin.admin') }}" class="nav-link">
+                <a href="{{ route('admin.staff') }}" class="nav-link">
   @endif
                   <i class="fas fa-list nav-icon"></i>
                   <p>{{ __('lang.list') }}</p>
                 </a>
               </li>
-  @can('admin.create')
+  @can('staff.create')
               <li class="nav-item">
-    @if (Route::currentRouteName() === 'admin.admin.create')
-                <a href="{{ route('admin.admin.create') }}" class="nav-link active">
+    @if (Route::currentRouteName() === 'admin.staff.create')
+                <a href="{{ route('admin.staff.create') }}" class="nav-link active">
     @else
-                <a href="{{ route('admin.admin.create') }}" class="nav-link">
+                <a href="{{ route('admin.staff.create') }}" class="nav-link">
     @endif
                   <i class="fas fa-plus nav-icon"></i>
                   <p>{{ __('lang.create') }}</p>
