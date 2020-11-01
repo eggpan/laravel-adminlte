@@ -10,10 +10,12 @@
   <div class="row">
     <div class="col m-2">
       <div class="float-sm-right">
+@can('admin.create')
         <a class="btn btn-success btn-sm" href="{{ route('admin.admin.create') }}">
           <i class="fas fa-folder"></i>
           {{ __('lang.create') }}
         </a>
+@endcan
       </div>
     </div>
   </div>
@@ -41,21 +43,25 @@
                     <i class="fas fa-folder"></i>
                     {{ __('lang.view') }}
                 </a>
+@can('admin.update')
                 <a class="btn btn-info btn-sm" href="{{ route('admin.admin.edit', ['id' => $admin->id]) }}">
                     <i class="fas fa-pencil-alt"></i>
                     {{ __('lang.edit') }}
                 </a>
-                @isset ($admin->deleted_at)
+@endcan
+@can('admin.delete')
+   @isset ($admin->deleted_at)
                 <a class="btn btn-default btn-sm" href="{{ route('admin.admin.restore', ['id' => $admin->id]) }}">
                   <i class="fas fa-pencil-alt"></i>
                   {{ __('lang.restore') }}
                 </a>
-              @else
+  @else
                 <button type="button" class="btn btn-danger btn-sm js-delete-button" data-toggle="modal" data-target="#delete-modal" data-delete-url="{{ route('admin.admin.delete', ['id' => $admin->id]) }}">
                   <i class="fas fa-trash"></i>
                   {{ __('lang.delete') }}
                 </button>
-            @endisset
+  @endisset
+@endcan
               </td>
             </tr>
           @endforeach
