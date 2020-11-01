@@ -21,6 +21,23 @@ abstract class TestCase extends BaseTestCase
             'locale'   => 'ja',
             'password' => bcrypt('password'),
         ]);
+        $this->developer = Admin::create([
+            'email'    => $this->faker->unique()->safeEmail,
+            'username' => $this->faker->name,
+            'role_id'  => 2,
+            'locale'   => 'ja',
+            'password' => bcrypt('password'),
+        ]);
+        $this->user = Admin::create([
+            'email'    => $this->faker->unique()->safeEmail,
+            'username' => $this->faker->name,
+            'role_id'  => 3,
+            'locale'   => 'ja',
+            'password' => bcrypt('password'),
+        ]);
         $this->seed('RoleTableSeeder');
+        $this->seed('PermissionTableSeeder');
+        $this->seed('RolePermissionTableSeeder');
+        $this->seed('RolePermissionTableSeeder');
     }
 }
