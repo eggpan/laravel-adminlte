@@ -1,0 +1,8 @@
+id,name
+1,superuser
+2,site.read
+3,site.admin
+4,admin.create
+5,admin.read
+6,admin.update
+7,admin.delete

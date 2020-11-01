@@ -17,8 +17,10 @@ abstract class TestCase extends BaseTestCase
         $this->admin = Admin::create([
             'email'    => $this->faker->unique()->safeEmail,
             'username' => $this->faker->name,
+            'role_id'  => 1,
             'locale'   => 'ja',
             'password' => bcrypt('password'),
         ]);
+        $this->seed('RoleTableSeeder');
     }
 }
