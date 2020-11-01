@@ -1,7 +1,7 @@
 id,name
 1,superuser
 2,site.read
-3,site.admin
+3,site.adminmenu.read
 4,admin.create
 5,admin.read
 6,admin.update
