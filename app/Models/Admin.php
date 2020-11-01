@@ -14,6 +14,7 @@ class Admin extends Authenticatable
         'username',
         'email',
         'password',
+        'role_id',
         'locale',
     ];
 
@@ -21,4 +22,42 @@ class Admin extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function permissions()
+    {
+        return $this->role->permissions();
+    }
+
+    public function hasPermission($permission)
+    {
+        $permissions = (array)$permission;
+        if ($this->isSuperUser()) {
+            $allPermissions = Permission::pluck('name')->toArray();
+            foreach ($permissions as $p) {
+                if (! in_array($p, $allPermissions)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        $adminPermissions = $this->permissions->pluck('name')->toArray();
+        foreach ($permissions as $p) {
+            if (! in_array($p, $adminPermissions)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public function isSuperUser()
+    {
+        $adminPermissions = $this->permissions->pluck('name')->toArray();
+        return in_array('superuser', $adminPermissions);
+    }
 }

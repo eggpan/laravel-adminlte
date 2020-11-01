@@ -40,8 +40,8 @@
             <label for="locale" class="col-sm-2 col-form-label">{{ __('lang.locale') }}</label>
             <div class="col-sm-10">
               <select name="locale" class="form-control @error('locale') is-invalid @enderror" id="locale">
-                <option value="ja" @if ($admin->locale === 'ja') selected @endif>日本語</option>
-                <option value="en" @if ($admin->locale === 'en') selected @endif>English</option>
+                <option value="ja" @if (old('locale', $admin->locale) === 'ja') selected @endif>日本語</option>
+                <option value="en" @if (old('locale', $admin->locale) === 'en') selected @endif>English</option>
               </select>
               <div class="invalid-feedback">
                 @error('locale') {{ $message }} @enderror
