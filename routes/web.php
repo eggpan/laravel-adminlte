@@ -34,7 +34,7 @@ if (config('site.enable_admin')) {
             Route::get('logout', [LoginController::class, 'doLogout'])->name('admin.logout');
 
             // 管理者メニュー
-            Route::group(['middleware'=> 'permission:site.admin'], function () {
+            Route::group(['middleware'=> 'permission:adminmenu.read'], function () {
 
                 // BEGIN 管理者ユーザー
                 Route::group(['middleware'=> 'permission:admin.read'], function () {
