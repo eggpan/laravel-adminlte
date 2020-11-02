@@ -23,7 +23,6 @@ class StaffTableSeeder extends Seeder
                 'username'       => 'Adminstrator',
                 'email'          => 'admin@example.com',
                 'password'       => bcrypt('password'),
-                'role_id'        => 1,
                 'locale'         => 'ja',
                 'remember_token' => Str::random(10),
             ]

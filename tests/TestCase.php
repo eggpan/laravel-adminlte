@@ -35,6 +35,7 @@ abstract class TestCase extends BaseTestCase
             'locale'   => 'ja',
             'password' => bcrypt('password'),
         ]);
+        $this->seed('StaffRoleTableSeeder');
         $this->seed('RoleTableSeeder');
         $this->seed('PermissionTableSeeder');
         $this->seed('RolePermissionTableSeeder');

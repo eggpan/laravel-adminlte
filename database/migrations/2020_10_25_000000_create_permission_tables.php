@@ -12,6 +12,13 @@ class CreatePermissionTables extends Migration
      */
     public function up()
     {
+        Schema::create('staff_roles', function (Blueprint $table) {
+            $table->id();
+            $table->string('staff_id');
+            $table->string('role_id');
+            $table->timestamps();
+        });
+
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
             $table->string('name');

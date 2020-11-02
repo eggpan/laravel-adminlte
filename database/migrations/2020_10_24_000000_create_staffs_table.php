@@ -18,7 +18,6 @@ class CreateStaffsTable extends Migration
             $table->string('username');
             $table->string('email')->unique();
             $table->string('password');
-            $table->integer('role_id')->nullable();
             $table->string('locale');
             $table->rememberToken();
             $table->timestamps();

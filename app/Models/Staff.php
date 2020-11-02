@@ -14,7 +14,6 @@ class Staff extends Authenticatable
         'username',
         'email',
         'password',
-        'role_id',
         'locale',
     ];
 
@@ -23,41 +22,39 @@ class Staff extends Authenticatable
         'remember_token',
     ];
 
-    public function role()
+    public function roles()
     {
-        return $this->belongsTo(Role::class);
+        return $this->belongsToMany(Role::class, 'staff_roles')->withTimestamps();
     }
 
-    public function permissions()
+    public function hasRole($roleId)
     {
-        return $this->role->permissions();
+        foreach ($this->roles as $role) {
+            if ($role->id === $roleId) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public function hasPermission($permission)
     {
-        $permissions = (array)$permission;
-        if ($this->isSuperUser()) {
-            $allPermissions = Permission::pluck('name')->toArray();
-            foreach ($permissions as $p) {
-                if (! in_array($p, $allPermissions)) {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        $adminPermissions = $this->permissions->pluck('name')->toArray();
-        foreach ($permissions as $p) {
-            if (! in_array($p, $adminPermissions)) {
-                return false;
+        foreach($this->roles as $role) {
+            if ($role->hasPermission($permission)) {
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     public function isSuperUser()
     {
-        $adminPermissions = $this->permissions->pluck('name')->toArray();
-        return in_array('superuser', $adminPermissions);
+        foreach($this->roles as $role) {
+            if ($role->isSuperUser()) {
+                return true;
+            }
+        }
+        return false;
     }
+
 }
