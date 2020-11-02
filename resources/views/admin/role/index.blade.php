@@ -23,6 +23,7 @@
               <td>{{ $role->id }}</td>
               <td>{{ $role->name }}</td>
               <td>{{ $role->created_at }}</td>
+              <td>{{ $role->updated_at }}</td>
               <td class="project-actions text-right">
                 <a class="btn btn-primary btn-sm" href="{{ route('admin.role.view', ['id' => $role->id]) }}">
                     <i class="fas fa-folder"></i>

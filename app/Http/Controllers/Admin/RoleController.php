@@ -37,6 +37,11 @@ class RoleController extends Controller
 
     public function edit(string $id, Request $request)
     {
+        $role = Role::find($id);
+        if (is_null($role)) {
+            return back_with_not_found($id);
+        }
+        $role->touch();
         $newPermissions = $request->get('permissions');
         if (isset($newPermissions)) {
             foreach ($newPermissions as $permission) {
