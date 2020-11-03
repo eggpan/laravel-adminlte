@@ -14,31 +14,30 @@ abstract class TestCase extends BaseTestCase
     protected function setUp(): void
     {
         parent::setUp();
+        $this->seed('StaffRoleTableSeeder');
+        $this->seed('RoleTableSeeder');
+        $this->seed('PermissionTableSeeder');
+        $this->seed('RolePermissionTableSeeder');
+        $this->seed('RolePermissionTableSeeder');
         $this->admin = Staff::create([
             'email'    => $this->faker->unique()->safeEmail,
             'username' => $this->faker->name,
-            'role_id'  => 1,
             'locale'   => 'ja',
             'password' => bcrypt('password'),
         ]);
         $this->developer = Staff::create([
             'email'    => $this->faker->unique()->safeEmail,
             'username' => $this->faker->name,
-            'role_id'  => 2,
             'locale'   => 'ja',
             'password' => bcrypt('password'),
         ]);
         $this->user = Staff::create([
             'email'    => $this->faker->unique()->safeEmail,
             'username' => $this->faker->name,
-            'role_id'  => 3,
             'locale'   => 'ja',
             'password' => bcrypt('password'),
         ]);
-        $this->seed('StaffRoleTableSeeder');
-        $this->seed('RoleTableSeeder');
-        $this->seed('PermissionTableSeeder');
-        $this->seed('RolePermissionTableSeeder');
-        $this->seed('RolePermissionTableSeeder');
+        $this->developer->roles()->attach(2);
+        $this->user->roles()->attach(3);
     }
 }
