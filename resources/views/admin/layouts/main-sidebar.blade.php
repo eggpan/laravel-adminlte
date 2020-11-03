@@ -37,6 +37,7 @@
           </li>
           -->
 @can('site.adminmenu.read')
+
           <li class="nav-header">{{ __('lang.admin_menu') }}</li>
   @can('staff.read')
     @if (Str::startsWith(Route::currentRouteName(), 'admin.staff'))
@@ -75,9 +76,39 @@
                 </a>
               </li>
     @endcan
-            </ul>
-          </li>
+            </ul><!-- .nav.nav-treeview -->
+          </li><!-- .nav-item.has-treeview -->
   @endcan{{-- can('staff.read') --}}
+
+  @can('permission.read')
+    @if (Str::startsWith(Route::currentRouteName(), 'admin.role'))
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
+    @else
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+    @endif
+              <i class="nav-icon far fa-user"></i>
+              <p>
+                {{ __('lang.role') }}
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+    @if (Route::currentRouteName() === 'admin.role')
+                <a href="{{ route('admin.role') }}" class="nav-link active">
+    @else
+                <a href="{{ route('admin.role') }}" class="nav-link">
+    @endif
+                  <i class="fas fa-list nav-icon"></i>
+                  <p>{{ __('lang.list') }}</p>
+                </a>
+              </li>
+            </ul><!-- .nav.nav-treeview -->
+          </li><!-- .nav-item.has-treeview -->
+  @endcan{{-- can('permission.read') --}}
+
 @endcan{{-- can('site.adminmenu.read') --}}
         </ul>
       </nav><!-- /.sidebar-menu -->

@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\StaffController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,7 +37,7 @@ if (config('site.enable_admin')) {
             // 管理者メニュー
             Route::group(['middleware'=> 'permission:site.adminmenu.read'], function () {
 
-                // BEGIN 管理者ユーザー
+                // BEGIN 管理者スタッフ
                 Route::group(['middleware'=> 'permission:staff.read'], function () {
                     Route::get('staff', [StaffController::class, 'showList'])->name('admin.staff');
                     Route::get('staff/view/{id}', [StaffController::class, 'view'])->name('admin.staff.view');
@@ -53,7 +54,16 @@ if (config('site.enable_admin')) {
                         Route::get('staff/restore/{id}', [StaffController::class, 'restore'])->name('admin.staff.restore');
                     });
                 });
-                // END 管理者ユーザー
+                // END 管理者スタッフ
+
+                Route::group(['middleware'=> 'permission:permission.read'], function () {
+                    Route::get('role', [RoleController::class, 'showList'])->name('admin.role');
+                    Route::get('role/view/{id}', [RoleController::class, 'view'])->name('admin.role.view');
+                });
+                Route::group(['middleware'=> 'permission:permission.update'], function () {
+                    Route::get('role/{id}', [RoleController::class, 'showEditForm'])->name('admin.role.edit');
+                    Route::put('role/{id}', [RoleController::class, 'edit'])->name('admin.role.edit');
+                });
             });
         });
     });

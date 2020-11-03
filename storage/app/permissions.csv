@@ -1,8 +1,9 @@
 id,name
 1,superuser
-2,site.read
-3,site.adminmenu.read
-4,staff.create
-5,staff.read
-6,staff.update
-7,staff.delete
+2,site.adminmenu.read
+3,staff.create
+4,staff.read
+5,staff.update
+6,staff.delete
+7,permission.read
+8,permission.update
