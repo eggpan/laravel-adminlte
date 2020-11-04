@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'cant_edit_admin_role' => 'ID:1 のロールは編集できません。',
     'confirm_delete' => 'データを削除しますか？',
     'deleted_data' => 'データを削除しました。',
     'restore_data' => 'データを復元しました。',
