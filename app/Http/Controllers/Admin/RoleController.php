@@ -56,9 +56,12 @@ class RoleController extends Controller
      */
     public function edit(string $id, RoleEditRequest $request)
     {
+        if ($id === '1') {
+            return redirect_with_error('admin.role', __('message.cant_edit_admin_role'));
+        }
         $role = Role::find($id);
         if (is_null($role)) {
-            return back_with_not_found($id);
+            return redirect_with_error('admin.role', __('message.record_not_exist', ['id' => $id]));
         }
         $role->touch();
         $newPermissions = $request->get('permissions');

@@ -58,18 +58,50 @@ class RoleControllerTest extends TestCase
 
     public function testロール編集のPOST失敗()
     {
+        // バリデーションエラー
         $this->get(route('admin.role.edit', ['id' => 2]));
         $response = $this->put(
             route('admin.role.edit.put', ['id' => 2]),
             [
                 'permissions' => [
-                    'hogehoge'
+                    'hogehoge',
+                    'fugafuga',
                 ]
             ]
         );
+        $errorMessage = session('errors')->get('permissions.1')[0];
+        $this->assertEquals($errorMessage, __('validation.in', ['attribute' => 'permissions.1']));
 
         $response
             ->assertStatus(302)
             ->assertRedirect(route('admin.role.edit', ['id' => 2]));
+
+        // Administratorの編集
+        $this->get(route('admin.role.edit', ['id' => 2]));
+        $response = $this->put(
+            route('admin.role.edit.put', ['id' => 1]),
+            [
+                'permissions' => null
+            ]
+        );
+        $response->assertSessionHasErrors('message');
+        $errorMessage = session('errors')->first();
+        $this->assertEquals($errorMessage, __('message.cant_edit_admin_role'));
+
+        // 存在しないIDのPOST
+        $this->get(route('admin.role.edit', ['id' => 2]));
+        $response = $this->put(
+            route('admin.role.edit.put', ['id' => 0]),
+            [
+                'permissions' => null
+            ]
+        );
+        $response->assertSessionHasErrors('message');
+        $errorMessage = session('errors')->first();
+        $this->assertEquals($errorMessage, __('message.record_not_exist', ['id' => '0']));
+
+        $response
+            ->assertStatus(302)
+            ->assertRedirect(route('admin.role'));
     }
 }
