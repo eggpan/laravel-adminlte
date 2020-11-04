@@ -76,7 +76,7 @@ class StaffController extends Controller
      * @param string $id
      * @param StaffEditRequest $request
      *
-     * @return \Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function edit(string $id, StaffEditRequest $request)
     {
