@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RoleEditRequest;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\RolePermission;
@@ -10,18 +11,28 @@ use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
+    /**
+     * ロール一覧の表示
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
     public function showList()
     {
         $roles = Role::paginate();
         return view('admin.role.index', ['roles' => $roles]);
     }
 
+    /**
+     * ロールのパーミッション編集フォーム表示
+     *
+     * @param string $id
+     *
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     */
     public function showEditForm(string $id)
     {
         if ($id === '1') {
-            return redirect()
-                ->back()
-                ->withErrors(['message' => 'ID:1の権限は編集出来ません。']);
+            return back_with_error(__('message.cant_edit_admin_role'));
         }
         $role = Role::find($id);
         $permissions = Permission::where('name', '!=', 'superuser')->get();
@@ -35,7 +46,15 @@ class RoleController extends Controller
         ]);
     }
 
-    public function edit(string $id, Request $request)
+    /**
+     * ロールのパーミッション編集実行
+     *
+     * @param string $id
+     * @param RoleEditRequest $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function edit(string $id, RoleEditRequest $request)
     {
         $role = Role::find($id);
         if (is_null($role)) {
@@ -66,6 +85,13 @@ class RoleController extends Controller
         return redirect_with_success('admin.role', __('message.updated_record', ['id' => $id]));
     }
 
+    /**
+     * ロール情報の表示
+     *
+     * @param string $id
+     *
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     */
     public function view(string $id)
     {
         $role = Role::find($id);
