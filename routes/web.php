@@ -62,7 +62,7 @@ if (config('site.enable_admin')) {
                 });
                 Route::group(['middleware'=> 'permission:permission.update'], function () {
                     Route::get('role/{id}', [RoleController::class, 'showEditForm'])->name('admin.role.edit');
-                    Route::put('role/{id}', [RoleController::class, 'edit'])->name('admin.role.edit');
+                    Route::put('role/{id}', [RoleController::class, 'edit'])->name('admin.role.edit.put');
                 });
             });
         });

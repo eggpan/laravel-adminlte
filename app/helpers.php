@@ -22,3 +22,11 @@ if(! function_exists('redirect_with_success')) {
             ->with(['message.success' => $message]);
     }
 }
+if(! function_exists('redirect_with_error')) {
+    function redirect_with_error($routeName, $message)
+    {
+        return redirect()
+            ->route($routeName)
+            ->withErrors(['message' => $message]);
+    }
+}
