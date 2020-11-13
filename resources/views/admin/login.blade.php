@@ -14,6 +14,13 @@
 </head>
 <body class="login-page" style="min-height: 512.391px;">
   <div class="login-box">
+    @if (session('message.success'))
+    <div class="row">
+      <div class="callout callout-success">
+        <h5>{{ session('message.success') }}</h5>
+      </div>
+    </div>
+    @endif
     <div class="login-logo">
       <span><b>{{ __('lang.login') }}</b></span>
     </div>
@@ -75,11 +82,9 @@
           </div>
         </form>
 
-        <!--
         <p class="mt-3 mb-1">
-          <a href="#">I forgot my password</a>
+          <a href="{{ route('admin.password.request') }}">I forgot my password</a>
         </p>
-        -->
       </div>
       <!-- /.login-card-body -->
     </div>

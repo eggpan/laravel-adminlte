@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use App\Notifications\Staff\ResetPasswordNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class Staff extends Authenticatable
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, Notifiable, SoftDeletes;
 
     protected $fillable = [
         'username',
@@ -57,4 +59,8 @@ class Staff extends Authenticatable
         return false;
     }
 
+    public function sendPasswordResetNotification($token)
+    {
+       $this->notify(new ResetPasswordNotification($token));
+    }
 }
