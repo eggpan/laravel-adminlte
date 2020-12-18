@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\ResetPasswordController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\StaffController;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,10 @@ if (config('site.enable_admin')) {
         Route::group(['middleware' => 'guest:staff'], function () {
             Route::get('login', [LoginController::class, 'showLoginForm'])->name('admin.login');
             Route::post('login', [LoginController::class, 'doLogin'])->name('admin.login.post');
+            Route::get('forgot-password', [ResetPasswordController::class, 'showRequestForm'])->name('admin.password.request');
+            Route::post('forgot-password', [ResetPasswordController::class, 'sendEmail'])->name('admin.password.email');
+            Route::get('reset-password/{encryptEmail}/{token}', [ResetPasswordController::class, 'showResetForm'])->name('admin.password.reset');
+            Route::post('reset-password', [ResetPasswordController::class, 'updatePassword'])->name('admin.password.update');
         });
 
         Route::group(['middleware' => 'auth:staff'], function () {
